@@ -136,15 +136,15 @@ exports.getAllProducts = (ctx) => {
             return ctx
         }
     }
-    var respuesta =getPrecio(ctx.request.body.items,ctx.request.body.cart_id) 
-    if (respuesta["status"] == "NOK"){
-        if (respuesta["error_message"] ==  "INTERNAL SERVER ERROR"){
+    var respont =getPrecio(ctx.request.body.items,ctx.request.body.cart_id) 
+    if (respont["status"] == "NOK"){
+        if (respont["error_message"] ==  "INTERNAL SERVER ERROR"){
             ctx.status = 500
-            ctx.body = respuesta
+            ctx.body = respont
         }
         else{
             ctx.status = 400
-            ctx.body = respuesta
+            ctx.body = respont
         }
     }
     else {
