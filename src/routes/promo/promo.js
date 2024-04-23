@@ -125,6 +125,17 @@ exports.getAllProducts = (ctx) => {
             }
         return ctx
     }
+    for (let i = 0; i < ctx.request.body.items.length;i++){
+        
+        if (ctx.request.body.items[i]["item_id"] === undefined ||ctx.request.body.items[i]["promotion"] === undefined ||ctx.request.body.items[i]["amount"] === undefined ||ctx.request.body.items[i]["unit_base_price"] === undefined){
+            ctx.status = 500
+            ctx.body = {
+                "status": "NOK",
+                "error_message": "INTERNAL SERVER ERROR"
+                }
+            return ctx
+        }
+    }
     var respuesta =getPrecio(ctx.request.body.items,ctx.request.body.cart_id) 
     if (respuesta["status"] == "NOK"){
         if (respuesta["error_message"] ==  "INTERNAL SERVER ERROR"){
